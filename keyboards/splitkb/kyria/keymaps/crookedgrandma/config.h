@@ -17,6 +17,9 @@
 #pragma once
 
 #ifdef RGBLIGHT_ENABLE
+#    define RGBLIGHT_LAYERS // Enables the use of lighting layers
+#    define RGBLIGHT_LAYERS_RETAIN_VAL // Retains set brightness in lighting layers
+// #    define RGBLIGHT_LAYER_DEBUG // Enables debug lighting layer
 #    define RGBLIGHT_EFFECT_BREATHING
 #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
 #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL

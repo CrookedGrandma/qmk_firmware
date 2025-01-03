@@ -169,6 +169,68 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ),
 };
 
+/*
+ * The following stuff is RGB related
+ */
+
+// Debug layer
+const rgblight_segment_t PROGMEM rgb_debug_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    // Left half starts at 0
+    {0, 1, HSV_YELLOW},      // 0
+    {1, 1, HSV_WHITE},       // 1
+    {2, 2, HSV_BLUE},        // 2-3
+    {4, 3, HSV_GREEN},       // 4-6
+    {7, 4, HSV_PINK},        // 7-10
+    {11, 5, HSV_CHARTREUSE}, // 11-15
+    {16, 9, HSV_CORAL},      // 16-24
+
+    // Right half starts at 31
+    {31, 1, HSV_YELLOW},     // 31
+    {32, 1, HSV_WHITE},      // 32
+    {33, 2, HSV_BLUE},       // 33-34
+    {35, 3, HSV_GREEN},      // 35-37
+    {38, 4, HSV_PINK},       // 38-41
+    {42, 5, HSV_CHARTREUSE}, // 42-46
+    {47, 9, HSV_CORAL}       // 47-55
+);
+
+// Navigation layer
+const rgblight_segment_t PROGMEM rgb_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {52, 1, HSV_WHITE},   // Up arrow
+    {45, 3, HSV_WHITE},  // Left, down & right arrows
+    {39, 3, HSV_MAGENTA} // Media prev, play & next
+);
+
+// Symbols layer
+const rgblight_segment_t PROGMEM rgb_sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {51, 3, HSV_CYAN},  // 7-9
+    {45, 3, HSV_CYAN},  // 4-6
+    {39, 3, HSV_CYAN},  // 1-3
+    {33, 1, HSV_CYAN},  // 0
+    {54, 2, HSV_CORAL}, // - +
+    {48, 2, HSV_CORAL}, // / *
+    {42, 2, HSV_GOLD}   // ( )
+);
+
+const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    rgb_debug_layer,
+    rgb_nav_layer,
+    rgb_sym_layer
+);
+
+void keyboard_post_init_user(void) {
+    rgblight_layers = rgb_layers;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+#ifdef RGBLIGHT_LAYER_DEBUG
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
+#endif
+    rgblight_set_layer_state(1, layer_state_cmp(state, _NAV));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
+    return state;
+}
+
 /* The default OLED and rotary encoder code can be found at the bottom of qmk_firmware/keyboards/splitkb/kyria/rev1/rev1.c
  * These default settings can be overriden by your own settings in your keymap.c
  * For your convenience, here's a copy of those settings so that you can uncomment them if you wish to apply your own modifications.
