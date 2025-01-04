@@ -215,6 +215,9 @@ const rgblight_segment_t PROGMEM rgb_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {52, 1, HSV_WHITE},   // Up arrow
     {45, 3, HSV_WHITE},   // Left, down & right arrows
     {39, 3, HSV_MAGENTA}, // Media prev, play & next
+    {54, 1, HSV_GOLD},    // Volume +
+    {48, 1, HSV_GOLD},    // Volume -
+    {42, 1, HSV_BLUE},    // Volume mute
     {17, 1, COL_CTL},     // Ctrl
     {16, 1, COL_SFT},     // Shift
     {15, 1, COL_ALT},     // Alt
@@ -236,14 +239,32 @@ const rgblight_segment_t PROGMEM rgb_sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {18, 1, COL_SFT}    // Shift (from base layer)
 );
 
-// Functions layer
+// Function layer
 const rgblight_segment_t PROGMEM rgb_function_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {45, 1, COL_CTL},     // Ctrl
-    {46, 1, COL_SFT},     // Shift
-    {47, 1, COL_ALT},     // Alt
-    {48, 1, COL_SUP},     // Super
-    {12, 1, COL_CTL},     // Ctrl (from base layer)
-    {18, 1, COL_SFT}      // Shift (from base layer)
+    { 8, 4, HSV_CORAL}, // F1-F4
+    {14, 4, HSV_CORAL}, // F5-F8
+    {20, 4, HSV_CORAL}, // F9-F12
+    {45, 1, COL_CTL},   // Ctrl
+    {46, 1, COL_SFT},   // Shift
+    {47, 1, COL_ALT},   // Alt
+    {48, 1, COL_SUP},   // Super
+    {12, 1, COL_CTL},   // Left Ctrl (from base layer)
+    {18, 1, COL_SFT},   // Left Shift (from base layer)
+    {43, 1, COL_CTL},   // Right Ctrl (from base layer)
+    {49, 1, COL_SFT}    // Right Shift (from base layer)
+);
+
+// Adjust layer
+const rgblight_segment_t PROGMEM rgb_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {44, 1, HSV_CORAL},  // Toggle RGB
+    {45, 1, HSV_GREEN},  // Saturation +
+    {39, 1, HSV_GREEN},  // Saturation -
+    {46, 1, HSV_BLUE},   // Hue +
+    {40, 1, HSV_BLUE},   // Hue -
+    {47, 1, HSV_WHITE},  // Value +
+    {41, 1, HSV_WHITE},  // Value -
+    {48, 1, HSV_PURPLE}, // Effect +
+    {42, 1, HSV_PURPLE}  // EFfect -
 );
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -251,7 +272,8 @@ const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     rgb_base_layer,
     rgb_nav_layer,
     rgb_sym_layer,
-    rgb_function_layer
+    rgb_function_layer,
+    rgb_adjust_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -267,6 +289,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(2, layer_state_cmp(state, _NAV));
     rgblight_set_layer_state(3, layer_state_cmp(state, _SYM));
     rgblight_set_layer_state(4, layer_state_cmp(state, _FUNCTION));
+    rgblight_set_layer_state(5, layer_state_cmp(state, _ADJUST));
     return state;
 }
 
