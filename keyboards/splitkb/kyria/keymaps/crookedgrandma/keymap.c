@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+---------|
  * |Ctrl/Esc|   Z  |   X  |   C  |   V  |   B  | [ {  |CapsLk|  |F-keys|  ] } |   N  |   M  | ,  < | . >  | /  ? |  RCtrl  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+-----------------------'
- *                        |Adjust| LGUI | LAlt/| Space| Nav  |  | Sym  | Space| AltGr| Enter| Menu |
+ *                        |Adjust| SUPER| LAlt/| Space| Nav  |  | Sym  | Space| AltGr| Enter| Menu |
  *                        |      |      | Enter|      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      |      |      |      |                              | PgUp | Home |   ↑  | End  | VolUp| Delete |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  GUI |  Alt | Ctrl | Shift|      |                              | PgDn |  ←   |   ↓  |   →  | VolDn| Insert |
+ * |        | Ctrl | Shift|  Alt | Super|      |                              | PgDn |  ←   |   ↓  |   →  | VolDn| Insert |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |ScLck |  |      |      | Pause|M Prev|M Play|M Next|VolMut| PrtSc  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_NAV] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_VOLU, KC_DEL,
-      _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_INS,
+      _______, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_INS,
       _______, _______, _______, _______, _______, _______, _______, KC_SCRL, _______, _______,KC_PAUSE, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_PSCR,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  F9  | F10  | F11  | F12  |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  F5  |  F6  |  F7  |  F8  |      |                              |      | Shift| Ctrl |  Alt |  GUI |        |
+ * |        |  F5  |  F6  |  F7  |  F8  |      |                              |      | Ctrl | Shift|  Alt | Super|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  F1  |  F2  |  F3  |  F4  |      |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_FUNCTION] = LAYOUT(
       _______,  KC_F9 ,  KC_F10,  KC_F11,  KC_F12, _______,                                     _______, _______, _______, _______, _______, _______,
-      _______,  KC_F5 ,  KC_F6 ,  KC_F7 ,  KC_F8 , _______,                                     _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, _______,
+      _______,  KC_F5 ,  KC_F6 ,  KC_F7 ,  KC_F8 , _______,                                     _______, KC_RCTL, KC_RSFT, KC_LALT, KC_RGUI, _______,
       _______,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F4 , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -173,14 +173,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * The following stuff is RGB related
  */
 
+#define COL_CTL HSV_YELLOW
+#define COL_SFT HSV_WHITE
+#define COL_ALT HSV_MAGENTA
+#define COL_SUP HSV_BLUE
+
 // Debug layer
 const rgblight_segment_t PROGMEM rgb_debug_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     // Left half starts at 0
-    {0, 1, HSV_YELLOW},      // 0
-    {1, 1, HSV_WHITE},       // 1
-    {2, 2, HSV_BLUE},        // 2-3
-    {4, 3, HSV_GREEN},       // 4-6
-    {7, 4, HSV_PINK},        // 7-10
+    { 0, 1, HSV_YELLOW},     // 0
+    { 1, 1, HSV_WHITE},      // 1
+    { 2, 2, HSV_BLUE},       // 2-3
+    { 4, 3, HSV_GREEN},      // 4-6
+    { 7, 4, HSV_PINK},       // 7-10
     {11, 5, HSV_CHARTREUSE}, // 11-15
     {16, 9, HSV_CORAL},      // 16-24
 
@@ -194,11 +199,28 @@ const rgblight_segment_t PROGMEM rgb_debug_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {47, 9, HSV_CORAL}       // 47-55
 );
 
+// Base (QWERTY) layer
+const rgblight_segment_t PROGMEM rgb_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {12, 1, COL_CTL}, // Left Ctrl
+    {43, 1, COL_CTL}, // Right Ctrl
+    {18, 1, COL_SFT}, // Left Shift
+    {49, 1, COL_SFT}, // Right Shift
+    { 2, 1, COL_ALT}, // Left Alt
+    {33, 1, COL_ALT}, // Right Alt
+    { 3, 1, COL_SUP}  // Super
+);
+
 // Navigation layer
 const rgblight_segment_t PROGMEM rgb_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {52, 1, HSV_WHITE},   // Up arrow
-    {45, 3, HSV_WHITE},  // Left, down & right arrows
-    {39, 3, HSV_MAGENTA} // Media prev, play & next
+    {45, 3, HSV_WHITE},   // Left, down & right arrows
+    {39, 3, HSV_MAGENTA}, // Media prev, play & next
+    {17, 1, COL_CTL},     // Ctrl
+    {16, 1, COL_SFT},     // Shift
+    {15, 1, COL_ALT},     // Alt
+    {14, 1, COL_SUP},     // Super
+    {12, 1, COL_CTL},     // Ctrl (from base layer)
+    {18, 1, COL_SFT}      // Shift (from base layer)
 );
 
 // Symbols layer
@@ -209,13 +231,27 @@ const rgblight_segment_t PROGMEM rgb_sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {33, 1, HSV_CYAN},  // 0
     {54, 2, HSV_CORAL}, // - +
     {48, 2, HSV_CORAL}, // / *
-    {42, 2, HSV_GOLD}   // ( )
+    {42, 2, HSV_GOLD},  // ( )
+    {12, 1, COL_CTL},   // Ctrl (from base layer)
+    {18, 1, COL_SFT}    // Shift (from base layer)
+);
+
+// Functions layer
+const rgblight_segment_t PROGMEM rgb_function_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {45, 1, COL_CTL},     // Ctrl
+    {46, 1, COL_SFT},     // Shift
+    {47, 1, COL_ALT},     // Alt
+    {48, 1, COL_SUP},     // Super
+    {12, 1, COL_CTL},     // Ctrl (from base layer)
+    {18, 1, COL_SFT}      // Shift (from base layer)
 );
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     rgb_debug_layer,
+    rgb_base_layer,
     rgb_nav_layer,
-    rgb_sym_layer
+    rgb_sym_layer,
+    rgb_function_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -225,9 +261,12 @@ void keyboard_post_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_LAYER_DEBUG
     rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
+#else
+    rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
 #endif
-    rgblight_set_layer_state(1, layer_state_cmp(state, _NAV));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _NAV));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _SYM));
+    rgblight_set_layer_state(4, layer_state_cmp(state, _FUNCTION));
     return state;
 }
 
