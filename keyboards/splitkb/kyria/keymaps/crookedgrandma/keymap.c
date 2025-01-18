@@ -217,11 +217,14 @@ const rgblight_segment_t PROGMEM rgb_debug_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM rgb_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {12, 1, COL_CTL}, // Left Ctrl
     {43, 1, COL_CTL}, // Right Ctrl
-    {18, 1, COL_SFT}, // Left Shift
-    {49, 1, COL_SFT}, // Right Shift
-    { 2, 1, COL_ALT}, // Left Alt
-    {33, 1, COL_ALT}, // Right Alt
-    { 3, 1, COL_SUP}  // Super
+    {18, 1, COL_SFT}, // Left Shift 1
+    { 2, 1, COL_SFT}, // Left Shift 2
+    {49, 1, COL_SFT}, // Right Shift 1
+    {33, 1, COL_SFT}, // Right Shift 2
+    { 6, 1, COL_ALT}, // Left Alt
+    {37, 1, COL_ALT}, // Right Alt
+    { 3, 1, COL_SUP}, // Super
+    {23, 1, HSV_BLUE} // Adjustment layer
 );
 
 // Navigation layer
@@ -237,7 +240,11 @@ const rgblight_segment_t PROGMEM rgb_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {15, 1, COL_ALT},     // Alt
     {14, 1, COL_SUP},     // Super
     {12, 1, COL_CTL},     // Ctrl (from base layer)
-    {18, 1, COL_SFT}      // Shift (from base layer)
+    {18, 1, COL_SFT},     // Left Shift 1 (from base layer)
+    { 2, 1, COL_SFT},     // Left Shift 2 (from base layer)
+    {33, 1, COL_SFT},     // Right Shift (from base layer)
+    { 6, 1, COL_ALT},     // Left Alt (from base layer)
+    {37, 1, COL_ALT}      // Right Alt (from base layer)
 );
 
 // Symbols layer
@@ -246,11 +253,20 @@ const rgblight_segment_t PROGMEM rgb_sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {45, 3, HSV_CYAN},  // 4-6
     {39, 3, HSV_CYAN},  // 1-3
     {33, 1, HSV_CYAN},  // 0
-    {54, 2, HSV_CORAL}, // - +
-    {48, 2, HSV_CORAL}, // / *
-    {42, 2, HSV_GOLD},  // ( )
+    {48, 2, HSV_CORAL}, // - +
+    {42, 2, HSV_CORAL}, // / *
+    { 7, 1, HSV_GOLD},  // [
+    {38, 1, HSV_GOLD},  // ]
+    {13, 1, HSV_GOLD},  // (
+    {44, 1, HSV_GOLD},  // )
+    {19, 1, HSV_GOLD},  // {
+    {50, 1, HSV_GOLD},  // }
     {12, 1, COL_CTL},   // Ctrl (from base layer)
-    {18, 1, COL_SFT}    // Shift (from base layer)
+    {18, 1, COL_SFT},   // Left Shift 1 (from base layer)
+    { 2, 1, COL_SFT},   // Left Shift 2 (from base layer)
+    {33, 1, COL_SFT},   // Right Shift (from base layer)
+    { 6, 1, COL_ALT},   // Left Alt (from base layer)
+    {37, 1, COL_ALT}    // Right Alt (from base layer)
 );
 
 // Function layer
@@ -263,9 +279,13 @@ const rgblight_segment_t PROGMEM rgb_function_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {47, 1, COL_ALT},   // Alt
     {48, 1, COL_SUP},   // Super
     {12, 1, COL_CTL},   // Left Ctrl (from base layer)
-    {18, 1, COL_SFT},   // Left Shift (from base layer)
     {43, 1, COL_CTL},   // Right Ctrl (from base layer)
-    {49, 1, COL_SFT}    // Right Shift (from base layer)
+    {18, 1, COL_SFT},   // Left Shift 1 (from base layer)
+    { 2, 1, COL_SFT},   // Left Shift 2 (from base layer)
+    {49, 1, COL_SFT},   // Right Shift 1 (from base layer)
+    {33, 1, COL_SFT},   // Right Shift 2 (from base layer)
+    { 6, 1, COL_ALT},   // Left Alt (from base layer)
+    {37, 1, COL_ALT}    // Right Alt (from base layer)
 );
 
 // Adjust layer
