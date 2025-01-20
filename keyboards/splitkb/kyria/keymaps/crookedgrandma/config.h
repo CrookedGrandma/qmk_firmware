@@ -16,6 +16,10 @@
 
 #pragma once
 
+// Use Liatris Power LED as Caps Lock indicator
+#define LED_CAPS_LOCK_PIN 24  
+#define LED_PIN_ON_STATE 0
+
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLIGHT_LAYERS // Enables the use of lighting layers
 #    define RGBLIGHT_LAYERS_RETAIN_VAL // Retains set brightness in lighting layers
